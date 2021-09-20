@@ -15,7 +15,7 @@ CentOS 8.4 64位系统（其他系统部署会有一些差异）
 ```
 # 部署master节点
 ```
-#step 1
+#step 1 会重启服务器
 sh pre-deploy.sh
 
 #step 2
@@ -25,7 +25,7 @@ sh k8s-master.sh
 # 部署worker节点
 若有多个worker节点，在每个节点上执行下面操作
 ```
-#step 1
+#step 1 会重启服务器
 sh pre-deploy.sh
 
 #step 2
