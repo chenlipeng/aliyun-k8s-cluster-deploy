@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: daemonset-clp
+spec:
+    selector:
+        matchLabels:
+            app: daemonset-clp
+    template:
+        metadata:
+            labels:
+                app: daemonset-clp
+        spec:
+            containers:
+            - name: main
+              image: luksa/ssd-monitor

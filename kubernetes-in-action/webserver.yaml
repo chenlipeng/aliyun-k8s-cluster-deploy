@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: webserver-01
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: webserver-01
+    template:
+        metadata:
+            labels:
+                app: webserver-01
+        spec:
+            serviceAccountName: summer
+            imagePullSecrets:
+            - name: chenlipeng
+            containers:
+            - name: webserver
+              image: registry.cn-beijing.aliyuncs.com/chenlipeng/webserver:0.0.3
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: webserver-01
+    name: webserver-01
+    namespace: default
+spec:
+    type: NodePort
+    ports:
+        - port: 443
+          targetPort: 9999
+          nodePort: 30000
+    selector:
+        app: webserver-01
