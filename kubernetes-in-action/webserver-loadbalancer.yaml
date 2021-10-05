@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-    name: webserver-01
+    name: webserver-loadbalancer
 spec:
     replicas: 2
     selector:
         matchLabels:
-            app: webserver-01
+            app: webserver-loadbalancer
     template:
         metadata:
             labels:
-                app: webserver-01
+                app: webserver-loadbalancer
         spec:
             serviceAccountName: summer
             imagePullSecrets:
@@ -25,15 +25,15 @@ apiVersion: v1
 kind: Service
 metadata:
     labels:
-        app: webserver-01
-    name: webserver-01
+        app: webserver-loadbalancer
+    name: webserver-loadbalancer
     namespace: default
 spec:
-    type: NodePort
+    type: LoadBalancer
     sessionAffinity: None
     ports:
         - port: 443
           targetPort: 9999
-          nodePort: 30000
+          #nodePort: 30000
     selector:
-        app: webserver-01
+        app: webserver-loadbalancer
