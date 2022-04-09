@@ -1,0 +1,1 @@
+kubeadm join 172.19.34.122:6443 --token 24trm4.bzroyr6t92tbqrij --discovery-token-ca-cert-hash sha256:413247a1f9294b0becce625cc94b3247574a14b1f8df2a4a238f1154960d8f38
